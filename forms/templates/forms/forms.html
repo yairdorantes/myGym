@@ -1,0 +1,19 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+{% load crispy_forms_tags %}
+{% load static %}
+<body style="background-color: #233140;">
+    
+<div id='zoom' style="zoom: 2;padding: 90px;background-color:#233140;color: aliceblue;text-align: center;" >
+    <img style='height:100px;text-align: center;' src="../../static/miwebapp/img/heart.svg" alt="">
+    <form style="color:whitesmoke" action="" method="POST" autocomplete="on">
+        {% csrf_token %}
+        <div>{{form|crispy}}</div>
+        <button type="submit" class="btn btn-primary">Crear cuenta!</button>
+        <p>¿Ya tienes una cuenta? <a href="{% url 'acceso' %}">Ingresa aqui</a></p>
+    </form>
+</div>
+
+
+</body>
+
+

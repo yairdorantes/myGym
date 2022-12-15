@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% extends 'miwebapp/index.html' %}
+{% load static %}
+{% load cart.cart_tags %}
+{% block content %}
+<p id="desliza" style="color: white">Desliza sobre la tabla para ver más &rarr;</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-9">
+            <div class="row">
+                <div class="table-responsive">
+                <table class="table table-responsive" style="background-color: white;text-align: center;">
+                    <thead>
+                        <tr class='text-center'>
+                            <th>ID</th>
+                            <th>Total</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in object_list %}
+                            <tr class="text-center">
+                                <td>{{ i.id }}</td>
+                                <td>{{ i.total|money_format:'$' }}</td>
+                                <td>{{ i.created_at|date:'d/m/Y H:i' }}</td>
+                                <td><a href="{% url 'order_detail' i.id %}">Ver detalles</a></td>
+                            </tr>
+                        {% empty %}
+                        <tr>
+                            <td>
+                                <div class='alert alert-danger'> No tienes ningun pedido todavia.</div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

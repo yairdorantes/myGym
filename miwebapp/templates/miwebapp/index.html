@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<html lang="en">
+<head>
+    {% load static %}
+    {% load cart.cart_tags %}
+
+   
+    <link  href="{% static 'miwebapp/css/css.css' %}" type="text/css" rel="stylesheet" >
+    <link href= "{% static 'miwebapp/css/queries.css' %}"  type="text/css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../static/miwebapp/img/muscle.png">
+    <title>Sports</title>
+   
+</head>
+<body>
+    <script src="{% static 'miwebapp/js/miweb.js' %}"></script>
+    <nav class="main-navbar">
+        <ul class="navbar-cont">
+            <li class="logo"><a href="#" class="navbar-link">
+                <img id="img-1" class="logoss" src="../../static/miwebapp/img/fitness.svg" alt="">
+            </a>
+            </li>
+            <li  class="navbar-item"><a href="{% url 'home' %}" class="navbar-link">
+                <img class="logos" src="../../static/miwebapp/img/gym.svg" alt="">
+                <span class="link-text">Home</span>
+            </a>
+            </li>
+            <li class="navbar-item">
+                <a href="{% url 'listproducts' %}" class="navbar-link">
+                    <img class="logos" src="../../static/miwebapp/img/tienda.svg" alt="">
+                    <span class="link-text">Tienda</span>
+                </a>
+            </li>
+            <li class="navbar-item">
+                <a href="{% url 'prueba' %}" class="navbar-link">
+                    <img  class="logos" src="../../static/miwebapp/img/blog.svg" alt="">
+                    <span class="link-text">Blog</span>
+                </a>
+            </li>
+            <li class="navbar-item">
+                <a class="navbar-link" href="{% url 'carrito' %}">
+                    <img class="carrito" src="../../static/miwebapp/img/carrito.svg" alt="">
+                    <span class="link-text">Carrito de <br> compras: <br> {{totales}} Productos </span>
+                    <div class="total-items" style="font-style: oblique;" >{{totales}}</div>
+                    
+                </a>
+            </li>
+            <li class="navbar-item">
+                <a class="navbar-link" href="#contacto">
+                    <img class="carrito" src="../../static/miwebapp/img/comunicar.svg" alt="">
+                    <span class="link-text">Contacto</span>
+                    
+                </a>
+            </li> 
+            <li class="navbar-item">
+                <a href="{% url 'salir' %}" class="navbar-link">
+                    <img class="logos" src="../../static/miwebapp/img/salida.svg" alt="">
+                    <span class="link-text">Salir</span>
+                </a>
+            </li>
+            
+        </ul>
+    </nav>  
+     
+    <main id="tops">
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item" style="margin-top:10px;">
+                <a class="btn btn-outline-primary" href="{% url 'order_list' %}">Mis Pedidos</a>
+            </li>
+            <li class="nav-item" style="margin-top:10px;">
+              
+                <a class="btn btn-outline-info" style='max-width: 155px;word-wrap: break-word;max-height: 80px;overflow: auto;'  href="#" >Hola {{user.username}}</a>
+              
+            </li>
+        
+            <li class="nav-item" style="margin-top:10px;">
+                <a class="btn btn-outline-danger" href="{% url 'salir' %}">Cerrar sesion</a>
+            </li>
+            {% else %}
+            <li class="nav-item" style="margin-top:10px;">
+                <a class="btn btn-success" href="{% url 'acceso' %}">Acceder</a>
+            </li>
+            <li class="nav-item" style="margin-top:10px;">
+                <a class="btn btn-success" href="{% url 'formsreg' %}">Registro</a>
+            </li>
+            {% endif %}
+        </ul>
+        <div class="container mt-3">
+            {% if messages %}
+            <div class="row mt-3 mb-3">
+                <div class="col-12">
+                    {% for i in messages %}
+                    <div class="alert alert-{{ i.tags }}">
+                        {{ i }}     
+                    </div>
+                    {% endfor %}
+            {% endif %}
+                </div>
+            </div>
+            
+    {% block content %}
+    
+    {% endblock %}
+    </main>
+    <footer class="text-center footer-style" id="contacto">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-col">
+                    <h3>Dirección</h3>
+                    <p>
+                        <iframe id='mapa' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15062.509958635444!2d-99.68983240135661!3d19.298559082737356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cd8824b460c8d7%3A0x213823739af6afaa!2sGYM%20MANIA!5e0!3m2!1ses-419!2smx!4v1617038618496!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </p>
+                </div>
+                <div class="col-md-4 footer-col">
+                    <h3>Nuestras redes</h3>
+                    <ul class="list-inline">
+                        <li>
+                            <a  target="_blank" href="https://www.facebook.com/RevenantSports-109218690688855/?__cft__[0]=AZUi7tciVT0FExmRcCm_XWZDyJiHxMkYpO3BGaCx3HrUcK9e3lAWzxNlr8lVejINqToiDpaMdybgNc80DPUfnDvNycliYVl68SyMusszgTL27zix2jTJMjAjgRtqTmDM083-TraqLIuRH_jRxb6qyuqn&__tn__=H-R" class="btn-social btn-outline"><img class='logi' src="../../static/miwebapp/img/facebook.svg" alt=""> </a>
+                        </li>
+                        <li>
+                            <a  target="_blank" href="https://www.instagram.com/revenantsports7/" class="btn-social btn-outline"><img class='logi' src="../../static/miwebapp/img/instagram.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <a  target="_blank" href="https://twitter.com/Mas_Musculos?s=20" class="btn-social btn-outline"><img class='logi' src="../../static/miwebapp/img/tw.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <a  target="_blank" href="https://t.me/YairMaster" class="btn-social btn-outline"><img class='logi' src="../../static/miwebapp/img/telegrama.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <a  target="_blank" href="mailto:companyseller.ml@gmail.com" class="btn-social btn-outline"><img class='logi' src="../../static/miwebapp/img/email.svg" alt=""></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 footer-col">
+                    <h3>Asesoramiento</h3>
+                    <p>Te ayudamos a tener una vida más saludable <br>Llámanos: <br> <a style="color:white" class="btn btn-link"href="tel:7291434687"> 7291434687</a></p><br>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

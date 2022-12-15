@@ -1,0 +1,26 @@
+{% extends 'miwebapp/index.html' %}
+{% load static %}
+{% load cart.cart_tags %}
+{% block content %}
+<div id="banner">
+    <img id="bg-img" src="../../static/miwebapp/img/gym-2.jpg" alt=""> 
+  
+</div>
+<div class="contenedor">
+    <p style="margin-top:50px;">Training 24/7</p>
+    <p>No pares cuando estés cansado;para cuando termines de entrenar.</p>
+    <p>¡Conoce nuestro gimnasio!</p>
+    <a href="#slider"><img class="arrow" src="../../static/miwebapp/img/arrowdown.svg" alt=""></a>
+</div>
+
+<div id="slider">
+    <figure>
+        <img src="../../static/miwebapp/img/peso.jpg" alt="">
+        <img src="../../static/miwebapp/img/funcional.jpg" alt="">
+        <img src="../../static/miwebapp/img/vestidores.jpg" alt="">
+        <img src="../../static/miwebapp/img/cardio.jpg" alt="">
+        <img src="../../static/miwebapp/img/lockers.jpg" alt="">            
+    </figure>
+</div>
+
+{% endblock %}

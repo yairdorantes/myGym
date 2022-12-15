@@ -1,0 +1,54 @@
+{% extends 'miwebapp/index.html' %}
+
+{% load static %}
+
+
+{% load cart.cart_tags %}
+
+{% block title %}Tienda{% endblock %}
+
+{% block content %}
+
+    Total {{ cart_total_amount|money_format:'$'}}
+ 
+<div class="row">
+    <div class="col-15">
+        <div class="row"  >
+            {% for i in productos %}
+              <div class="col-md-3 col-sm-12 col-lg-4" style="">
+                  <div class="card" style="width: 100%;">
+                    {% if i.image %}
+                    <div style='overflow: hidden;'>
+                        <img src="{{i.image.url}}" style="width: 100%;transition: all 0.3s;" class='card-img-top' alt="{{i.name}}">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{i.name}}</h5>
+                        <p class='card-text text-center'>{{i.excerpt}}</p>
+                        <p class="card-text text-center">Categoria: {{i.category}}</p>
+                        <p class='card-text text-center'>Disponibilidad:</p>
+                        {% if i.available == 1 %}
+                        <div class='text-center text-success'>Disponible</div>
+                        <div class='card-footer text-center'>
+                            <a class='btn btn-success' href="{% url 'product' i.id %}">Ver producto</a>
+                        </div>
+                        {% else %}
+                        <div class='text-danger text-center'>Agotado</div>
+                        {% endif %}
+                    </div>
+                   
+                    {% endif %}
+                  </div>
+                  <br>
+
+              </div>
+                    
+            {% endfor %}
+
+        </div>
+    </div>
+    <div class='col-3'>
+    </div>
+    <br>
+</div>
+{% include "products/paginacion.html" %}
+{% endblock %}

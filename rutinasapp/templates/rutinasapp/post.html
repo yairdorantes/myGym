@@ -1,0 +1,23 @@
+{% extends 'miwebapp/index.html' %}
+{% load static %}
+<!-- {% load markdown_deux_tags %} -->
+{% block content %}
+
+<body style="background-color: #2c2828;color: white;">
+    <div class="containers">
+        <div class="titulo-post">
+            <h1>{{titulo}}</h1>
+        </div>
+        <div class="imagen-post"><img src="{{imagen}}" alt="">
+            <div class="autor-post">Autor: {{autor}}</div>
+        </div>
+        <div class="texto">
+            <p>
+            <div class="contenido-post">{{contenido|markdown}}</div>
+            </p>
+            <p>Fecha de actualización: {{fecha}}</p>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

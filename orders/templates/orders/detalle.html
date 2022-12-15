@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% extends 'miwebapp/index.html' %}
+{% load static %}
+{% load cart.cart_tags %}
+{% block content %}
+<div class="container" style="color: white;" >
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center text-muted">Detalle del pedido #{{order.id}}</h1>
+            <div class="table-responsive">
+            <table class='table table-responsive'  style='background-color: white;'>
+                <thead>
+                <tr class='text-center'>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Precio total</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for i in order.orderline_set.all %}
+                    <tr class="text-center">
+                        <td>{{i.product.name}}</td>
+                        <td>{{i.quantity}}</td>
+                        <td>{{i.product.price|money_format:'$'}}</td>
+                        <td>{{i.product.price|multiply:i.quantity|money_format:'$'}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td class="text-center">
+                            {{order.total|money_format:'$'}}
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

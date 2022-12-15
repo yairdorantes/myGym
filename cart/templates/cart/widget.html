@@ -1,0 +1,90 @@
+{% extends 'miwebapp/index.html' %}
+{% load static %}
+{% load cart.cart_tags %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+{% block content %}
+
+<title>Carrito de compras</title>
+<link rel="icon" href="../../static/miwebapp/img/muscle.png">
+<div class="table-responsive">
+<table class="table" style="background-color: white;font-size: larger;">
+    <head>
+         <tr>
+            <th colspan="3" class="text-center">
+                Carrito
+            </th>            
+        </tr>
+        <tr>
+            <th class='text-center' >Producto</th>
+            <th  class='text-center'>Cantidad</th>
+            <th  class='text-center'>Acciones</th>
+    </head> 
+    <tbody>
+        {% if request.session.cart.items %}
+            {% for i,j in request.session.cart.items %}
+                <tr class="text-center">
+                    <td> <a class="bey" href="{% url 'product' i %}">{{j.name}}</a>
+                        {% if j.image %}
+                        <div class="row">
+                            <div class="text-center">
+                               <a  href="{% url 'product' i %}"><img class="img-thumbnail" src="{{j.image}}" style="width:60px;height:60px;" alt="topo"></a>
+                            </div>
+                            
+                        </div>
+                        
+                        {% endif %}
+                    </td>                    
+                    <td>{{j.quantity}}</td>
+
+                   
+                    <td>
+                  <a
+                            href="{% url 'cart:add_product_two' j.product_id %}"
+                            class="btn btn-sm btn-success"
+                        >
+                             +
+
+                        </a>
+                        <a
+                           href="{% url 'cart:decrement_product' j.product_id %}" 
+                           class="ml-2 btn-sm btn btn-danger"
+
+                        >
+                             -
+                        </a>
+                        Total {{j.price|multiply:j.quantity|money_format:'$'}}
+                        <a class="btn btn-warning btn-sm" href="{% url 'cart:remove_product' j.product_id %}">Eliminar</a>
+
+                </tr>
+
+
+            {% endfor %} 
+        {% else %}
+            <tr>
+                <td colspan="3">
+                    <div class="alert alert-danger text-center">
+                          No tienes productos en el carrito
+                    </div>
+
+        {% endif %}
+    </tbody>  
+    <tfoot>
+        <tr>
+            <td>
+                Total: {{ cart_total_amount|money_format:'$' }}
+            </td>
+        </tr>
+        {% if request.session.cart.items %}
+            <tr>
+                 <td>
+                    <a class="btn btn-success" href="{% url 'process_order' %}">Crear pedido</a>
+                 </td>
+            </tr>
+        {% endif %}
+    </tfoot>
+</table>
+<div class="text-center"  id="final" >
+    <a class='btn btn-info' href="{% url 'listproducts' %}">¡Ver más productos! </a> 
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,157 @@
+@media only screen and (min-width:1200px){
+    main{
+        margin-left: 90px;
+    }
+    .main-navbar{
+        top: 0;
+        width: 90px;
+        height: 100vh;
+        transition: 0.5s all ease;
+    }
+    .main-navbar:hover{
+        width: 250px;
+    }
+    .main-navbar:hover .link-text{
+        display: block;
+    }
+    .navbar-cont{
+        
+        flex-direction: column;
+        justify-content: initial;
+    }
+    .navbar-item:last-child{
+        margin-top:auto;
+    }
+    .navbar-link{
+        flex-direction: row;
+        justify-content: initial;
+        height: 100px;
+        
+    }
+    .navbar-link img{
+        margin: 0 25px;
+    }
+    .navbar-link img{
+        margin: -15px;
+    }    
+
+    /*.navbar-link:hover{
+        background-color: #56565f;
+    }*/
+    .link-text{
+        margin-left: 25px;
+        color: rgb(85, 255, 122);
+        text-transform:uppercase;
+        text-shadow:1px 1px 5px #fb1111;
+        font-size: 25px;
+    }
+    .logos{
+        height: 40px;
+    }
+    .logo{
+        display: block;
+        font-weight: bold;
+        text-transform: uppercase;
+        
+        margin-bottom: 10px;
+       /* font-size: 10px;*/
+        letter-spacing: 1px;
+        width: 100%;
+    }
+    .main-navbar:hover .logo img{
+        animation: animateHeart 1.5s ease-in-out infinite both;
+        margin-left: 58px;
+    }
+    .contenedor{
+      width: 100%;
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      color:	#94f02a;
+      position: absolute;
+      top: 15%;
+      font-family: 'Chau Philomene One', sans-serif;
+      text-align: center;
+    
+      font-size: 3vw;
+    }
+
+    .contenedor p{
+      margin: 50px;
+    }
+    #banner #bg-img{
+      filter: blur(5px);
+      width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+      margin: 0 0 0 0;
+      padding: 0 0 0 0;
+      border: 0;
+    }
+    #desliza{
+      visibility: hidden;
+    }
+    #form{
+      text-align: center;
+      width:10px;
+    }
+    
+    .carrito{
+      height: 46px;
+    }
+    .total-items{
+      display: none;
+    }
+    .containers img{
+      max-width: 60%;
+      height:auto;
+    }
+    .texto{
+      width:70vw;margin: auto;text-align: justify;
+    }
+    #one{
+      width: 80vw;
+    }
+  
+}
+
+.link-text:hover {
+    -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.6) 30%, #000 50%, rgba(0,0,0,.6) 70%);
+    -webkit-mask-size: 200%;
+    animation: shine 2s infinite;
+  }
+  
+  @keyframes shine {
+    from {
+      -webkit-mask-position: 150%;
+    }
+    
+    to {
+      -webkit-mask-position: -50%;
+    }
+  }
+
+
+
+@keyframes animateHeart {
+    
+    0% {
+      transform:  scale(0.8);
+    }
+    5% {
+      transform:  scale(0.9);
+    }
+    10% {
+      transform:  scale(0.8);
+    }
+    15% {
+      transform:  scale(1);
+    }
+    50% {
+      transform:  scale(0.8);
+    }
+    100% {
+      transform:  scale(0.8);
+    }
+    
+  }

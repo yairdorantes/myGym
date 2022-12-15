@@ -1,0 +1,23 @@
+
+{% extends 'miwebapp/index.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container" id="one" >
+    <div class="card" style="margin: auto;">
+        <img class="" src="{{imagen}}">
+        <div class="card-body" style="text-align:center;">
+            <h1>{{nombre}}</h1>
+            <h5 style="font-weight: 500;">${{precio}}</h5>
+            <p style='font-weight:bold;'>Descripción:</p>
+            <p style="overflow: auto;max-height: 150px;font-style:oblique;text-align: justify;">{{info}}</p>
+
+            <a class='btn btn-success' href="{% url 'cart:add_product' id %}">Agregar al carrito</a>
+        </div>
+    </div>
+    <br> 
+</div>
+
+
+{% endblock %}
+

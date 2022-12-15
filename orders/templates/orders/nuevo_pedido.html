@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Gracias por tu pedido </title>
+{% load cart.cart_tags %}
+<style>
+
+</style>
+<body>
+    <p>Hola {{username}},</p>
+    <p>Muchas gracias por tu pedido, a continuación toda la información del mismo:</p>
+    <h2>Información del pedido</h2>
+    <table id='order'>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Total</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{order.id}}</td>
+                <td>{{ order.total|money_format:"$" }}</td>
+                <td>{{ order.created_at|date:'d/m/Y H:i' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Lineas de pedido</h2>
+    <table id='order_lines'>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Precio total</th>
+            </tr>  
+        </thead>
+        <tbody>
+            {% for i in order_lines %}
+            <tr class="text-center">
+                <td>{{ i.product.name }}</td>
+                <td>{{ i.quantity }}</td>
+                <td>{{ i.product.price|money_format:'$' }}</td>
+                <td>{{ i.product.price|multiply:i.quantity|money_format:'$' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
